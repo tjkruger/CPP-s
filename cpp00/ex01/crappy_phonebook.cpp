@@ -1,5 +1,7 @@
 
 #include <iostream>
+#include <iomanip>
+#include <cstdlib>
 
 class Contact {
     private:
@@ -80,11 +82,12 @@ class PhoneBook {
             contacts[index].setNickname(input);
 
             std::cout << "Phone number: ";
-            std::cin >> input;
+            std::cin.ignore();
+            std::getline(std::cin, input);
             contacts[index].setPhonenum(input);
 
             std::cout << "Secret: ";
-            std::cin >> input;
+            std::getline(std::cin, input);
             contacts[index].setSecret(input);
 
             if (count < 8)
@@ -92,8 +95,62 @@ class PhoneBook {
             oldest = (oldest + 1) % 8;
         }
         void searchContact() {
+            for (int i = 0; i < count; i++) {
+                std::cout << std::setw(10) << std::right << i << "|";
+                
+                std::string field = contacts[i].getName();
+                if (field.length() > 10)
+                    field = field.substr(0, 9) + ".";
+                std::cout << std::setw(10) << std::right << field << "|";
+                
+                field = contacts[i].getSurname();
+                if (field.length() > 10)
+                    field = field.substr(0, 9) + ".";
+                std::cout << std::setw(10) << std::right << field << "|";
+                
+                field = contacts[i].getNickname();
+                if (field.length() > 10)
+                    field = field.substr(0, 9) + ".";
+                std::cout << std::setw(10) << std::right << field << "|";
+                
+                std::cout << std::endl;
+            }
             
+            int index;
+            std::cout << "Enter index: ";
+            std::cin >> index;
+            if (index < 0 || index >= count)
+                std::cout << "Invalid index" << std::endl;
+            else {
+                std::cout << contacts[index].getName() << std::endl;
+                std::cout << contacts[index].getSurname() << std::endl;
+                std::cout << contacts[index].getNickname() << std::endl;
+                std::cout << contacts[index].getPhonenum() << std::endl;
+                std::cout << contacts[index].getSecret() << std::endl;
+            }
+        }
+        void exitContact(){
+            exit(0);
         };
-        void exitContact();
     
 };
+
+int main() {
+    PhoneBook phonebook;
+    std::string input;
+    
+    while (1) {
+        std::cout << "Enter command (ADD, SEARCH, EXIT): ";
+        std::cin >> input;
+        
+        if (input == "ADD")
+            phonebook.addContact();
+        else if (input == "SEARCH")
+            phonebook.searchContact();
+        else if (input == "EXIT")
+            return 0;
+        else
+            std::cout << "Invalid command" << std::endl;
+    }
+    return 0;
+}

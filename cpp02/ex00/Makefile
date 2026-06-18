@@ -1,4 +1,4 @@
-NAME    = fclass
+NAME    = fixed
 
 CC      = c++
 CFLAGS  = -Wall -Wextra -Werror -std=c++17

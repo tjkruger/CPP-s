@@ -3,7 +3,7 @@ NAME    = fixed
 CC      = c++
 CFLAGS  = -Wall -Wextra -Werror -std=c++17
 
-SRC     = main.cpp fixed.cpp
+SRC     = main.cpp Fixed.cpp
 OBJ     = $(SRC:.cpp=.o)
 
 all: $(NAME)

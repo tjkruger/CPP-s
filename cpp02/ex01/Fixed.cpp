@@ -1,5 +1,5 @@
-#include <iostream>
-#include "fixed.hpp"
+#include "Fixed.hpp"
+
 
 Fixed::Fixed() : rawBits(0)
 {
@@ -10,6 +10,16 @@ Fixed::Fixed(const Fixed &other)
 {
     std::cout << "Copy constructor called" << std::endl;
     *this = other;
+}
+
+Fixed::Fixed(const int n) : rawBits(n * 256) 
+{
+    std::cout << "Int constructor called" << std::endl;
+}
+
+Fixed::Fixed(const float f) : rawBits(static_cast<int>(roundf(f * 256)))
+{
+    std::cout << "Float constructor called" << std::endl;
 }
 
 Fixed &Fixed::operator=(const Fixed &other)
@@ -34,4 +44,20 @@ int Fixed::getRawBits(void) const
 void Fixed::setRawBits(int const raw)
 {
     this->rawBits = raw;
+}
+
+int Fixed::toInt(void) const
+{
+    return this->rawBits / 256;
+}
+
+float Fixed::toFloat(void) const
+{
+    return this->rawBits / 256.0f;
+}
+
+std::ostream &operator<<(std::ostream &out, Fixed const &f)
+{
+    out << f.toFloat();
+    return out;
 }

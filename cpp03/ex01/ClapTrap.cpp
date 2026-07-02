@@ -47,5 +47,5 @@ void ClapTrap::beRepaired(unsigned int amount)
 
 ClapTrap::~ClapTrap(void)
 {
-    std::cout << name << " was successfully deconstructed" << std::endl;
+    std::cout << name << " was successfully deconstructed as Claptrap obj" << std::endl;
 }

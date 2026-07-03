@@ -1,5 +1,28 @@
 #include "ClapTrap.hpp"
 
+ClapTrap::ClapTrap()
+{
+    std::cout << "Default constructor called" << std::endl;
+}
+
+ClapTrap::ClapTrap(const ClapTrap &other)
+{
+    std::cout << "Copy constructor called" << std::endl;
+    *this = other;
+}
+
+ClapTrap &ClapTrap::operator=(const ClapTrap &other)
+{
+    std::cout << "Copy assignment operator called" << std::endl;
+    if (this != &other)
+    {
+        this->name = other.name;
+        this->hp = other.hp;
+        this->energy = other.energy;
+        this->dmg = other.dmg;
+    }
+    return *this;
+}
 
 ClapTrap::ClapTrap(std::string name)
 {
@@ -47,5 +70,5 @@ void ClapTrap::beRepaired(unsigned int amount)
 
 ClapTrap::~ClapTrap(void)
 {
-    std::cout << name << " was successfully deconstructed" << std::endl;
+    std::cout << name << " was successfully deconstructed as ClapTrap obj" << std::endl;
 }

@@ -43,7 +43,7 @@ int main()
         d.incrementGrade();
         std::cout << d << std::endl;//expected output Gandalf 1
         d.incrementGrade();
-        std::cout << d << std::endl << std::endl;//expected output Grade too high
+        std::cout << d << std::endl << std::endl;//expected output Grade too high because of exception
     }
     catch(std::exception &e)
     {
@@ -58,7 +58,7 @@ int main()
         e.decrementGrade();
         std::cout << e << std::endl;//expected output Gandalf 150
         e.decrementGrade();
-        std::cout << e << std::endl << std::endl;//expected output Grade too low
+        std::cout << e << std::endl << std::endl;//expected output Grade too low bc of the exception 
     }
     catch(std::exception &e)
     {
